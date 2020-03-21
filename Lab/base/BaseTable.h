@@ -1,9 +1,12 @@
 #pragma once
 #include <iostream>
+#include <vector>
+#include <string>
 
 struct Data
 {
 	int key;
+        string Polynom;  
 };
 
 class BaseTable
