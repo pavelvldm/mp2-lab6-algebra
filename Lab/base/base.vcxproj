@@ -19,14 +19,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="HTL_Metd.cpp" />
+    <ClCompile Include="List_Metd.cpp" />
+    <ClCompile Include="LTL_Metd.cpp" />
     <ClCompile Include="ordered_line_table.cpp" />
     <ClCompile Include="hash_table_on_lists.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Polynom_Metd.cpp" />
     <ClCompile Include="postfix.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseTable.h" />
+    <ClInclude Include="HashTabLin.h" />
     <ClInclude Include="hash_table_on_lists.h" />
+    <ClInclude Include="LinTabList.h" />
+    <ClInclude Include="List.h" />
     <ClInclude Include="ordered_line_table.h" />
+    <ClInclude Include="Polynom.h" />
     <ClInclude Include="postfix.h" />
     <ClInclude Include="stack.h" />
   </ItemGroup>
@@ -34,13 +43,13 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{B7DB588E-15E3-4D80-8867-B2506AB50676}</ProjectGuid>
     <RootNamespace>base</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">

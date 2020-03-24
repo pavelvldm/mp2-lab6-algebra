@@ -45,7 +45,7 @@ List<T>::~List()
 }
 
 template<typename T>
-void List<T>::push_back(const T &val, const int &d = 0)
+void List<T>::push_back(const T &val, const int &d)
 {
 	if (Head == nullptr)
 	{

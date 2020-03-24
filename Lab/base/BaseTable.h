@@ -15,7 +15,7 @@ struct Data
 class BaseTable
 {
 public:
-	virtual Data* Find(string key) = 0;
+	virtual Data* Find(std::string key) = 0;
 	virtual void Insert(Data data) = 0;
-	virtual void Delete(string key) = 0;
+	virtual void Delete(std::string key) = 0;
 };

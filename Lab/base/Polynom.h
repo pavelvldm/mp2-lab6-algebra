@@ -1,7 +1,8 @@
 #pragma once
 
 #include "List.h"
-#include "BaseTable.h"
+#include <string>
+#include "List_Metd.cpp"
 
 using namespace std;
 
