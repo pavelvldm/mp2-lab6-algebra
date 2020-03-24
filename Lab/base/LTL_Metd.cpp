@@ -8,18 +8,18 @@ LinTabList::~LinTabList()
 {
 	while (Head != nullptr)
 	{
-		Node* p = Head;
+		Link* p = Head;
 		if (p->pNext != nullptr)
 			Head = p->pNext;
 		delete p;
 	}
 }
 
-Data* LinTabList::Find(int k)
+Data* LinTabList::Find(string k)
 {
 	if (Head == nullptr) return nullptr;
 
-	Node* p = Head;
+	Link* p = Head;
 
 	if (k == p->data.key)
 		return &(p->data);
@@ -39,7 +39,7 @@ void LinTabList::Insert(Data data)
 {
 	if (Head == nullptr)
 	{
-		Head = new Node;
+		Head = new Link;
 		Head->data = data;
 		Head->pNext = nullptr;
 
@@ -48,17 +48,17 @@ void LinTabList::Insert(Data data)
 
 	if (Find(data.key) != nullptr) throw 3;									// 3 means already here
 
-	Node* p = new Node;
+	Link* p = new Link;
 	p->data = data;
 	p->pNext = Head;
 	Head = p;
 }
 
-void LinTabList::Delete(int k)
+void LinTabList::Delete(string k)
 {
 	if (Head == nullptr) throw 1;											// 1 means empty
 
-	Node* p = Head;
+	Link* p = Head;
 
 	if (k == p->data.key)
 	{
@@ -76,7 +76,7 @@ void LinTabList::Delete(int k)
 		}
 	}
 
-	Node* pp;
+	Link* pp;
 
 	while (p->pNext != nullptr)
 	{

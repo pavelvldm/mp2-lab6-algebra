@@ -1,20 +1,20 @@
 #pragma once
 #include "BaseTable.h"
 
-struct Node
+struct Link
 {
 	Data data;
-	Node* pNext;
+	Link* pNext;
 };
 
 class LinTabList : public BaseTable
 {
-	Node* Head;
+	Link* Head;
 public:
 	LinTabList();
 	~LinTabList();
 
-	Data* Find(int key);
+	Data* Find(string key);
 	void Insert(Data data);
-	void Delete(int key);
+	void Delete(string key);
 };

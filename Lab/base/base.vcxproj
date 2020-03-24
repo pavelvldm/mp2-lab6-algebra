@@ -19,12 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="HTL_Metd.cpp" />
+    <ClCompile Include="List_Metd.cpp" />
     <ClCompile Include="LTL_Metd.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Polynom_Metd.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseTable.h" />
+    <ClInclude Include="HashTabLin.h" />
     <ClInclude Include="LinTabList.h" />
+    <ClInclude Include="List.h" />
+    <ClInclude Include="Polynom.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
