@@ -1,27 +1,86 @@
 #include "HashTabLin.h"
-
-HashTabLin::HashTabLin()
-{
-}
+#include "Polynom.h"
 
 HashTabLin::~HashTabLin()
 {
+	for (int i = 0; i < 1000; i++)
+		if (Tab[i] != nullptr)
+			delete Tab[i];
 }
 
 Data* HashTabLin::Find(std::string key)
 {
-	return nullptr;
+	int SearchHash = HashIt(key);
+
+	if (Tab[SearchHash] == nullptr)
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			SearchHash = (SearchHash + 7) % 1000;
+			if (Tab[SearchHash] != nullptr)
+				if (Tab[SearchHash]->key == key)
+					return Tab[SearchHash];
+		}
+
+		return nullptr;
+	}
+	else
+	{
+		if (Tab[SearchHash]->key == key)
+			return Tab[SearchHash];
+		else
+		{
+			for (int i = 0; i < 10; i++)
+			{
+				SearchHash = (SearchHash + 7) % 1000;
+				if (Tab[SearchHash] != nullptr)
+					if (Tab[SearchHash]->key == key)
+						return Tab[SearchHash];
+			}
+
+			return nullptr;
+		}
+	}
 }
 
 void HashTabLin::Insert(Data data)
 {
+	if (Find(data.key) != nullptr)
+		throw 3;
+	int InsertHash = HashIt(data.key);
+
+	if (Tab[InsertHash] == nullptr)
+	{
+		Tab[InsertHash] = new Data;
+		Tab[InsertHash]->key = data.key;
+		Tab[InsertHash]->PolyString = data.PolyString;
+		Tab[InsertHash]->Poly = data.Poly;
+
+		return;
+	}
+	else
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			InsertHash = (InsertHash + 7) % 1000;
+			if (Tab[InsertHash] == nullptr)
+			{
+				Tab[InsertHash] = new Data;
+				Tab[InsertHash]->key = data.key;
+				Tab[InsertHash]->PolyString = data.PolyString;
+				Tab[InsertHash]->Poly = data.Poly;
+
+				return;
+			}
+		}
+
+		throw 5;																// нет места
+	}
 }
 
 void HashTabLin::Delete(std::string key)
 {
-}
-
-int HashTabLin::HashIt(Data data)
-{
-	return 0;
+	if (Find(key) == nullptr) throw 1;
+	Data* p = Find(key);
+	delete p;
 }
