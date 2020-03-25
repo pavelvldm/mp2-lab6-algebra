@@ -1,8 +1,14 @@
 #include <iostream>
-
+#include "postfix.h"
 int main()
 {
 	int a;
-	std::cout << "Hello world";
+	string check;
+	std::cout << "infix:";
+	std::cin >> check;
+	TPostfix help(check);
+	std::cout << endl << help.ToPostfix() << endl;
+//	std::cout << "Hello world";
 	std::cin >> a;
+	
 }
