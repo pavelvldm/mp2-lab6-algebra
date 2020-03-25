@@ -19,3 +19,14 @@ public:
 	virtual void Insert(Data data) = 0;
 	virtual void Delete(std::string key) = 0;
 };
+
+int HashIt(std::string key)
+{
+	int Hash = 0;
+
+	for (unsigned int i = 0; i < key.size(); i++)
+		Hash += (int)key[i];
+
+	Hash *= key.size();
+	return Hash % 1000;
+}

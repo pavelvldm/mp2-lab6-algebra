@@ -3,14 +3,18 @@
 
 class HashTabLin : public BaseTable
 {
-    std::vector<Data> Table;
+    Data* Tab[1000];
 public:
-    HashTabLin();
+    HashTabLin()
+    {
+        for (int i = 0; i < 1000; i++)
+            Tab[i] = nullptr;
+    }
     ~HashTabLin();
 
     Data* Find(std::string key);
     void Insert(Data data);
     void Delete(std::string key);
 
-    int HashIt(Data data);
+    friend int HashIt(std::string key);
 };
