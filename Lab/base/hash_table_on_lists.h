@@ -2,6 +2,7 @@
 
 #include <string>
 #include <iostream>
+#include "BaseTable.h"
 
 using namespace std;
 
