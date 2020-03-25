@@ -1,6 +1,7 @@
-#include "List.h"
+//#include "List.h"
 #include "Polynom.h"
-#include "BaseTable.h"
+
+//using namespace std;
 
 void TransformStr(string &s)
 {

@@ -8,9 +8,9 @@ public:
     HashTabLin();
     ~HashTabLin();
 
-    Data* Find(int key);
+    Data* Find(std::string key);
     void Insert(Data data);
-    void Delete(int key);
+    void Delete(std::string key);
 
     int HashIt(Data data);
 };

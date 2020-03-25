@@ -14,7 +14,7 @@ public:
 	LinTabList();
 	~LinTabList();
 
-	Data* Find(string key);
+	Data* Find(std::string key);
 	void Insert(Data data);
-	void Delete(string key);
+	void Delete(std::string key);
 };
