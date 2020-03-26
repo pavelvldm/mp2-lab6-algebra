@@ -1,6 +1,10 @@
-#pragma once
+//#pragma once
+
+#ifndef __BASE_TABLE_H__
+#define __BASE_TABLE_H__
+
 #include <iostream>
-#include <string>
+//#include <string>
 #include <vector>
 
 #include "Polynom.h"
@@ -20,13 +24,6 @@ public:
 	virtual void Delete(std::string key) = 0;
 };
 
-int HashIt(std::string key)
-{
-	int Hash = 0;
+int HashIt(std::string key);
 
-	for (unsigned int i = 0; i < key.size(); i++)
-		Hash += (int)key[i];
-
-	Hash *= key.size();
-	return Hash % 1000;
-}
+#endif

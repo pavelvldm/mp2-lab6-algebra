@@ -9,6 +9,7 @@
     <ClCompile Include="List_Metd.cpp" />
     <ClCompile Include="LTL_Metd.cpp" />
     <ClCompile Include="Polynom_Metd.cpp" />
+    <ClCompile Include="BaseTable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hash_table_on_lists.h" />

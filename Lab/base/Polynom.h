@@ -1,4 +1,7 @@
-#pragma once
+//#pragma once
+
+#ifndef __POLYNOM_H__
+#define __POLYNOM_H__
 
 #include "List.h"
 #include <string>
@@ -37,3 +40,4 @@ public:
 	friend ostream& operator<<(ostream &out, Polynom &polyOut);
 };
 
+#endif

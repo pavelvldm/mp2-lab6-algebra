@@ -1,4 +1,8 @@
-#pragma once
+//#pragma once
+
+#ifndef __LIST_H__
+#define __LIST_H__
+
 #include <iostream>
 
 template<typename T>
@@ -97,3 +101,4 @@ public:
 	void Sort();
 };
 
+#endif

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BaseTable.cpp" />
     <ClCompile Include="HTL_Metd.cpp" />
     <ClCompile Include="List_Metd.cpp" />
     <ClCompile Include="LTL_Metd.cpp" />
