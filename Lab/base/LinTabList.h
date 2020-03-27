@@ -10,6 +10,7 @@ struct Link
 class LinTabList : public BaseTable
 {
 	Link* Head;
+	int Amount;
 public:
 	LinTabList();
 	~LinTabList();
