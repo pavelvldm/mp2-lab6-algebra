@@ -1,7 +1,10 @@
-#pragma once
+//#pragma once
 
-#include <string>
-#include <iostream>
+#ifndef __HASH_TABLE_ON_LIST_H__
+#define __HASH_TABLE_ON_LIST_H__
+
+//#include <string>
+//#include <iostream>
 #include "BaseTable.h"
 
 using namespace std;
@@ -15,3 +18,5 @@ public:
   void Delete(int key); // 
   void Print();
 };
+
+#endif

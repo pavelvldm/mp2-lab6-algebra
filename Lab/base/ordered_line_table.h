@@ -1,7 +1,10 @@
-#pragma once
+//#pragma once
 
-#include <string>
-#include <iostream>
+#ifndef __ORDERED_LINE_TABLE_H__
+#define __ORDERED_LINE_TABLE_H__
+
+//#include <string>
+//#include <iostream>
 #include "BaseTable.h"
 
 using namespace std;
@@ -16,3 +19,5 @@ public:
   void Delete(int key); // 
   void Print();
 };
+
+#endif

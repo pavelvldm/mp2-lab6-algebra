@@ -1,4 +1,8 @@
 #pragma once
+
+#ifndef __LINTABLIST_H__
+#define __LINTABLIST_H__
+
 #include "BaseTable.h"
 
 struct Link
@@ -18,3 +22,5 @@ public:
 	void Insert(Data data);
 	void Delete(std::string key);
 };
+
+#endif

@@ -1,5 +1,5 @@
 #include "HashTabLin.h"
-#include "Polynom.h"
+//#include "Polynom.h"
 
 HashTabLin::~HashTabLin()
 {
