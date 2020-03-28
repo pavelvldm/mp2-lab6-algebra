@@ -8,15 +8,28 @@
 #include "BaseTable.h"
 
 using namespace std;
-
-class hash_table_on_lists
+struct link_t
 {
+	Data data;
+	link_t* pNext;
+};
+
+class hash_table_on_lists : public BaseTable
+{
+	link_t* Tab[1000];
 
 public:
-  Data* Find(int key);
-  void Insert(Data data);
-  void Delete(int key); // 
-  void Print();
+	hash_table_on_lists()
+	{
+		for (int i = 0; i < 1000; i++)
+			Tab[i] = nullptr;
+
+	}
+	~hash_table_on_lists();
+	Data* Find(string key);
+	void Insert(Data data);
+	void Delete(string key); // 
+	void Print();
 };
 
 #endif

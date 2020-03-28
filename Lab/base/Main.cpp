@@ -1,14 +1,11 @@
 #include <iostream>
-#include "postfix.h"
+#include "ordered_line_table.h"
+
 int main()
 {
 	int a;
-	string check;
-	std::cout << "infix:";
-	std::cin >> check;
-	TPostfix help(check);
-	std::cout << endl << help.ToPostfix() << endl;
-//	std::cout << "Hello world";
+
+	std::cout << "Hello world";
 	std::cin >> a;
 	
 }
