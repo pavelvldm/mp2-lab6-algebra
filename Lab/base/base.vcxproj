@@ -28,6 +28,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Polynom_Metd.cpp" />
     <ClCompile Include="postfix.cpp" />
+    <ClCompile Include="TreeTable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseTable.h" />
@@ -39,6 +40,7 @@
     <ClInclude Include="Polynom.h" />
     <ClInclude Include="postfix.h" />
     <ClInclude Include="stack.h" />
+    <ClInclude Include="TreeTable.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
