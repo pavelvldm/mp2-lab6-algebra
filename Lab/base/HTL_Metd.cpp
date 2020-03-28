@@ -1,5 +1,5 @@
 #include "HashTabLin.h"
-//#include "Polynom.h"
+#include "Polynom.h"
 
 HashTabLin::~HashTabLin()
 {
@@ -60,9 +60,12 @@ void HashTabLin::Insert(Data data)
 	}
 	else
 	{
+		if (Tab[InsertHash]->PolyString == data.PolyString)
+			throw 3;
 		for (int i = 0; i < 10; i++)
 		{
 			InsertHash = (InsertHash + 7) % 1000;
+
 			if (Tab[InsertHash] == nullptr)
 			{
 				Tab[InsertHash] = new Data;
@@ -72,6 +75,9 @@ void HashTabLin::Insert(Data data)
 
 				return;
 			}
+			else
+				if (Tab[InsertHash]->PolyString == data.PolyString)
+					throw 3;
 		}
 
 		throw 5;																// нет места
@@ -82,5 +88,7 @@ void HashTabLin::Delete(std::string key)
 {
 	if (Find(key) == nullptr) throw 1;
 	Data* p = Find(key);
-	delete p;
+	int DeleteHash = HashIt(p->key);
+	delete Tab[DeleteHash];
+	Tab[DeleteHash] = nullptr;
 }

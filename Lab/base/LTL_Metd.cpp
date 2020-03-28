@@ -1,17 +1,18 @@
 #include "LinTabList.h"
 
-LinTabList::LinTabList() : Head(nullptr)
+LinTabList::LinTabList() : Head(nullptr), Amount(0)
 {
 }
 
 LinTabList::~LinTabList()
 {
-	while (Head != nullptr)
+	while ((Head != nullptr) && (Amount))
 	{
 		Link* p = Head;
 		if (p->pNext != nullptr)
 			Head = p->pNext;
 		delete p;
+		Amount--;
 	}
 }
 
@@ -31,27 +32,33 @@ Data* LinTabList::Find(string k)
 		if (k == p->data.key)
 			return &(p->data);
 	}
-	
+
 	return nullptr;
 }
 
-void LinTabList::Insert(Data data)
+void LinTabList::Insert(Data d)
 {
 	if (Head == nullptr)
 	{
 		Head = new Link;
-		Head->data = data;
+		Head->data.key = d.key;
+		Head->data.Poly = d.Poly;
+		Head->data.PolyString = d.PolyString;
 		Head->pNext = nullptr;
+		Amount++;
 
 		return;
 	}
 
-	if (Find(data.key) != nullptr) throw 3;									// 3 means already here
+	if (Find(d.key) != nullptr) throw 3;									// 3 means already here
 
 	Link* p = new Link;
-	p->data = data;
+	p->data.key = d.key;
+	p->data.Poly = d.Poly;
+	p->data.PolyString = d.PolyString;
 	p->pNext = Head;
 	Head = p;
+	Amount++;
 }
 
 void LinTabList::Delete(string k)
