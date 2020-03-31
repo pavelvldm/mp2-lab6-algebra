@@ -8,7 +8,7 @@ HashTabLin::~HashTabLin()
 			delete Tab[i];
 }
 
-Data* HashTabLin::Find(std::string key)
+Data* HashTabLin::Find(const std::string& key)
 {
 	int SearchHash = HashIt(key);
 
@@ -43,7 +43,7 @@ Data* HashTabLin::Find(std::string key)
 	}
 }
 
-void HashTabLin::Insert(Data data)
+void HashTabLin::Insert(const Data& data)
 {
 	if (Find(data.key) != nullptr)
 		throw 3;
@@ -84,11 +84,19 @@ void HashTabLin::Insert(Data data)
 	}
 }
 
-void HashTabLin::Delete(std::string key)
+void HashTabLin::Delete(const std::string& key)
 {
 	if (Find(key) == nullptr) throw 1;
 	Data* p = Find(key);
 	int DeleteHash = HashIt(p->key);
 	delete Tab[DeleteHash];
 	Tab[DeleteHash] = nullptr;
+}
+
+void HashTabLin::Print()
+{
+	std::cout << "\tPRINTING HASH TABLE" << std::endl;
+	for (int i = 0; i < 1000; i++)
+		if (Tab[i] != nullptr)
+			std::cout << Tab[i]->key << ":\t" << Tab[i]->PolyString << std::endl;
 }

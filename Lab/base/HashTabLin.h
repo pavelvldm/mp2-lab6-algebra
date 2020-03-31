@@ -1,5 +1,3 @@
-//#pragma once
-
 #ifndef __HASHTABLIN_H__
 #define __HASHTABLIN_H__
 
@@ -16,11 +14,10 @@ public:
     }
     ~HashTabLin();
 
-    Data* Find(std::string key);
-    void Insert(Data data);
-    void Delete(std::string key);
-
-    //friend int HashIt(std::string key);
+    Data* Find(const std::string& key);
+    void Insert(const Data& data);
+    void Delete(const std::string& key);
+    void Print();
 };
 
 #endif
