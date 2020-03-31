@@ -305,6 +305,7 @@ string Polynom::CreateString()
 {
 	string Result;
 	unsigned int powX, powY, powZ;
+	double mulMonom;
 
 	Node<Monom>* p = Monoms.GetHead();
 
@@ -313,12 +314,13 @@ string Polynom::CreateString()
 		powX = GetPowX(p->inner.GetDeg());
 		powY = GetPowY(p->inner.GetDeg());
 		powZ = GetPowZ(p->inner.GetDeg());
+		mulMonom = p->inner.GetMul();
 
-		if (p->inner.GetMul() == -1)
+		if (mulMonom == -1)
 			Result += '-';
 		else
-			if (p->inner.GetMul() != 1)
-				Result += to_string(p->inner.GetMul());
+			if (mulMonom != 1)
+				Result += to_string(mulMonom);
 
 		if (powX)
 			if (powX != 1)
@@ -345,11 +347,16 @@ string Polynom::CreateString()
 			powX = GetPowX(p->inner.GetDeg());
 			powY = GetPowY(p->inner.GetDeg());
 			powZ = GetPowZ(p->inner.GetDeg());
+			mulMonom = p->inner.GetMul();
 
-			if (p->inner.GetMul() > 0)
+			if (mulMonom == -1)
+				Result += '-';
+
+			if (mulMonom > 0)
 				Result += '+';
 
-			Result += to_string(p->inner.GetMul());
+			if (mulMonom != 1)
+				Result += to_string(mulMonom);
 
 			if (powX)
 				if (powX != 1)
@@ -665,6 +672,90 @@ double Polynom::ValuePoint(const double& x, const double& y, const double& z)
 	}
 
 	return Result;
+}
+
+Polynom& Polynom::IntegrateDX()
+{
+	Node<Monom>* p = Monoms.GetHead();
+	unsigned int newpowX;
+	double newMul;
+
+	if (p != nullptr)
+	{
+		newpowX = GetPowX(p->inner.GetDeg()) + 1;
+		newMul = 1.0 / newpowX;
+		if (newpowX > (MAX_POLYNOM_POW - 1)) throw 8;
+		p->inner.ScalMul(newMul);
+		p->inner.GrowDegX();
+	}
+
+	while (p->pNext != nullptr)
+	{
+		p = p->pNext;
+		newpowX = GetPowX(p->inner.GetDeg()) + 1;
+		newMul = 1.0 / newpowX;
+		if (newpowX > (MAX_POLYNOM_POW - 1)) throw 8;
+		p->inner.ScalMul(newMul);
+		p->inner.GrowDegX();
+	}
+
+	return *this;
+}
+
+Polynom& Polynom::IntegrateDY()
+{
+	Node<Monom>* p = Monoms.GetHead();
+	unsigned int newpowY;
+	double newMul;
+
+	if (p != nullptr)
+	{
+		newpowY = GetPowY(p->inner.GetDeg()) + 1;
+		newMul = 1.0 / newpowY;
+		if (newpowY > (MAX_POLYNOM_POW - 1)) throw 8;
+		p->inner.ScalMul(newMul);
+		p->inner.GrowDegY();
+	}
+
+	while (p->pNext != nullptr)
+	{
+		p = p->pNext;
+		newpowY = GetPowY(p->inner.GetDeg()) + 1;
+		newMul = 1.0 / newpowY;
+		if (newpowY > (MAX_POLYNOM_POW - 1)) throw 8;
+		p->inner.ScalMul(newMul);
+		p->inner.GrowDegY();
+	}
+
+	return *this;
+}
+
+Polynom& Polynom::IntegrateDZ()
+{
+	Node<Monom>* p = Monoms.GetHead();
+	unsigned int newpowZ;
+	double newMul;
+
+	if (p != nullptr)
+	{
+		newpowZ = GetPowZ(p->inner.GetDeg()) + 1;
+		newMul = 1.0 / newpowZ;
+		if (newpowZ > (MAX_POLYNOM_POW - 1)) throw 8;
+		p->inner.ScalMul(newMul);
+		p->inner.GrowDegZ();
+	}
+
+	while (p->pNext != nullptr)
+	{
+		p = p->pNext;
+		newpowZ = GetPowZ(p->inner.GetDeg()) + 1;
+		newMul = 1.0 / newpowZ;
+		if (newpowZ > (MAX_POLYNOM_POW - 1)) throw 8;
+		p->inner.ScalMul(newMul);
+		p->inner.GrowDegZ();
+	}
+
+	return *this;
 }
 
 void Polynom::ClearZero()

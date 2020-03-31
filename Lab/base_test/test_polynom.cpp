@@ -163,3 +163,36 @@ TEST(Polynom, can_compute_value_in_point)
 
 	EXPECT_EQ(108, testResult);
 }
+
+TEST(Polynom, can_integrate_polynom_dx)
+{
+	string s1 = "2x - 7,4 + 1,7z^5x + x^3y^3";
+	string s2 = "x^2 - 7,4 x + 0,85 x^2z^5 + 0,25 x^4y^3";
+	Polynom testP(s1);
+	Polynom testQ(s2);
+
+	testP.IntegrateDX();
+	EXPECT_EQ(testQ, testP);
+}
+
+TEST(Polynom, can_integrate_polynom_dy)
+{
+	string s1 = "2x - 7,4 + 1,7z^5x + x^3y^3";
+	string s2 = "2xy -7,4y + 1,7z^5xy + 0,25x^3y^4";
+	Polynom testP(s1);
+	Polynom testQ(s2);
+
+	testP.IntegrateDY();
+	EXPECT_EQ(testQ, testP);
+}
+
+TEST(Polynom, can_integrate_polynom_dz)
+{
+	string s1 = "2x - 7,4 + 1,8z^5x + z^4y^3";
+	string s2 = "2xz - 7,4z + 0,3z^6x + 0,2z^5y^3";
+	Polynom testP(s1);
+	Polynom testQ(s2);
+
+	testP.IntegrateDZ();
+	EXPECT_EQ(testQ, testP);
+}

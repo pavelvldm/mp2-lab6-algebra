@@ -34,6 +34,23 @@ public:
 	double& GetMul() { return mul; }
 	unsigned int& GetDeg() { return deg; }
 	void ScalMul(const double& scal) { mul = scal * mul; }
+	void GrowDegX() 
+	{ 
+		if (((deg + 100) / 100) < 10)
+			deg = deg + 100; 
+	}
+
+	void GrowDegY() 
+	{ 
+		if ((((deg + 10) / 10) % 10) < 10)
+			deg = deg + 10; 
+	}
+
+	void GrowDegZ() 
+	{ 
+		if (((deg + 1) % 10) < 10)
+			deg = deg + 1;
+	}
 
 	Monom& operator=(const Monom& monomOut)
 	{
@@ -86,6 +103,9 @@ public:
 	Polynom& operator*=(Polynom& polyOut);
 	Polynom operator*(Polynom& polyOut);
 	double ValuePoint(const double& x, const double& y, const double& z);
+	Polynom& IntegrateDX();
+	Polynom& IntegrateDY();
+	Polynom& IntegrateDZ();
 
 	Polynom& operator=(const Polynom& polyOut);
 	bool operator==(const Polynom& polyOut) const;

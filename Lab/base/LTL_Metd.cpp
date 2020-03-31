@@ -16,7 +16,7 @@ LinTabList::~LinTabList()
 	}
 }
 
-Data* LinTabList::Find(string k)
+Data* LinTabList::Find(const std::string& k)
 {
 	if (Head == nullptr) return nullptr;
 
@@ -36,7 +36,7 @@ Data* LinTabList::Find(string k)
 	return nullptr;
 }
 
-void LinTabList::Insert(Data d)
+void LinTabList::Insert(const Data& d)
 {
 	if (Head == nullptr)
 	{
@@ -61,7 +61,7 @@ void LinTabList::Insert(Data d)
 	Amount++;
 }
 
-void LinTabList::Delete(string k)
+void LinTabList::Delete(const std::string& k)
 {
 	if (Head == nullptr) throw 1;											// 1 means empty
 
@@ -101,4 +101,21 @@ void LinTabList::Delete(string k)
 	}
 
 	throw 2;																// 2 means lack of key
+}
+
+void LinTabList::Print()
+{
+	std::cout << "\tPRINTING LINEAR TABLE ON LIST" << std::endl;
+	if (Head == nullptr) std::cout << "\tVOID\n";
+	else
+	{
+		Link* p = Head;
+		std::cout << p->data.key << ":\t" << p->data.PolyString << std::endl;
+
+		while (p->pNext != nullptr)
+		{
+			p = p->pNext;
+			std::cout << p->data.key << ":\t" << p->data.PolyString << std::endl;
+		}
+	}
 }

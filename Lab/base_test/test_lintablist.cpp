@@ -116,7 +116,7 @@ TEST(LinTabList, cant_delete_elem_when_its_empty)
 	}
 }
 
-TEST(LinTabList, can_delete_elem_existing_elem)
+TEST(LinTabList, can_delete_existing_elem)
 {
 	Data testData;
 	string testString = "6x^5y^4z^2 - 20x^4y^4z^2 + 2x^6y^4z^2";
