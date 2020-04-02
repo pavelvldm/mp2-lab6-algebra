@@ -118,7 +118,7 @@ void TableTree::Insert(Data _d)
 	while (p != nullptr)
 	{
 		if (p->d.key == _d.key)
-			throw "Error";
+			throw 3;
 		pp = p;
 		if (p->d.key < _d.key)
 		{
@@ -132,6 +132,8 @@ void TableTree::Insert(Data _d)
 		}
 	}
 	p = new TreeLink;
+	if (p == nullptr)
+		throw 5;
 	p->pRight = nullptr;
 	p->pLeft = nullptr;
 	if (flag == -1)
