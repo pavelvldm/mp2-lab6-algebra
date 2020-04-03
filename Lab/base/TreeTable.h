@@ -28,7 +28,7 @@ class TableTree : public BaseTable
 		if (p != nullptr)
 		{
 			TempPrint(p->pLeft);
-			std::cout << p->d.key << " " << p->diff << std::endl;
+			std::cout << p->d.key << " " << p->d.PolyString << std::endl;
 			TempPrint(p->pRight);
 		}
 	}
