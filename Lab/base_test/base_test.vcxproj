@@ -125,6 +125,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\base\BaseTable.cpp" />
+    <ClCompile Include="..\base\HTL_Metd.cpp" />
+    <ClCompile Include="..\base\LTL_Metd.cpp" />
+    <ClCompile Include="..\base\Polynom_Metd.cpp" />
     <ClCompile Include="test_hashtablin.cpp" />
     <ClCompile Include="test_lintablist.cpp" />
     <ClCompile Include="test_main.cpp" />

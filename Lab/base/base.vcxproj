@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="BaseTable.cpp" />
     <ClCompile Include="HTL_Metd.cpp" />
+    <ClCompile Include="LineTable.cpp" />
     <ClCompile Include="List_Metd.cpp" />
     <ClCompile Include="LTL_Metd.cpp" />
     <ClCompile Include="ordered_line_table.cpp" />
@@ -28,17 +29,20 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Polynom_Metd.cpp" />
     <ClCompile Include="postfix.cpp" />
+    <ClCompile Include="TreeTable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseTable.h" />
     <ClInclude Include="HashTabLin.h" />
     <ClInclude Include="hash_table_on_lists.h" />
+    <ClInclude Include="LineTable.h" />
     <ClInclude Include="LinTabList.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="ordered_line_table.h" />
     <ClInclude Include="Polynom.h" />
     <ClInclude Include="postfix.h" />
     <ClInclude Include="stack.h" />
+    <ClInclude Include="TreeTable.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

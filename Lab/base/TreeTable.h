@@ -1,0 +1,63 @@
+#ifndef __TABLE_TREE_H__
+#define __TABLE_TREE_H__
+
+#include "BaseTable.h"
+
+using namespace std;
+
+struct TreeLink
+{
+	Data d;
+	int diff;
+	TreeLink* pRight;
+	TreeLink* pLeft;
+	TreeLink* pParent;
+};
+
+class TableTree : public BaseTable
+{
+	TreeLink* pRoot;
+	void balance(int& a, int& b, int p);
+	void rotateLeft(TreeLink* a);
+	void rotateRight(TreeLink* a);
+	void rotateBigLeft(TreeLink* a);
+	void rotateBigRight(TreeLink* a);
+	void changeBalance(TreeLink* p, int a);
+	void TempPrint(TreeLink* p)
+	{
+		if (p != nullptr)
+		{
+			TempPrint(p->pLeft);
+			std::cout << p->d.key << " " << p->diff << std::endl;
+			TempPrint(p->pRight);
+		}
+	}
+public:
+	TableTree() :BaseTable()
+	{
+		pRoot = nullptr;
+	}
+	void Insert(Data d);
+	Data* Find(string key);
+	void Delete(string key);
+	void Print()
+	{
+		std::cout << "BUKA" << std::endl;
+		TreeLink* p = pRoot;
+		TempPrint(p);
+	}
+	void TempDelete(TreeLink* p)
+	{
+		if (p != nullptr)
+		{
+			TempDelete(p->pLeft);
+			TempDelete(p->pRight);
+			delete p;
+		}
+	}
+	~TableTree()
+	{
+		TempDelete(pRoot);
+	}
+};
+#endif

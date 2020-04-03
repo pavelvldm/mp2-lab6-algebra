@@ -3,8 +3,6 @@
 #ifndef __BASE_TABLE_H__
 #define __BASE_TABLE_H__
 
-#include <iostream>
-//#include <string>
 #include <vector>
 
 #include "Polynom.h"
@@ -19,9 +17,10 @@ struct Data
 class BaseTable
 {
 public:
-	virtual Data* Find(std::string key) = 0;
-	virtual void Insert(Data data) = 0;
-	virtual void Delete(std::string key) = 0;
+	virtual Data* Find(const std::string& key) = 0;
+	virtual void Insert(const Data& data) = 0;
+	virtual void Delete(const std::string& key) = 0;
+	virtual void Print() = 0;
 };
 
 int HashIt(std::string key);

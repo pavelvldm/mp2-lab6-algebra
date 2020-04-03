@@ -1,21 +1,22 @@
 #include "LinTabList.h"
 
-LinTabList::LinTabList() : Head(nullptr)
+LinTabList::LinTabList() : Head(nullptr), Amount(0)
 {
 }
 
 LinTabList::~LinTabList()
 {
-	while (Head != nullptr)
+	while ((Head != nullptr) && (Amount))
 	{
 		Link* p = Head;
 		if (p->pNext != nullptr)
 			Head = p->pNext;
 		delete p;
+		Amount--;
 	}
 }
 
-Data* LinTabList::Find(string k)
+Data* LinTabList::Find(const std::string& k)
 {
 	if (Head == nullptr) return nullptr;
 
@@ -31,30 +32,36 @@ Data* LinTabList::Find(string k)
 		if (k == p->data.key)
 			return &(p->data);
 	}
-	
+
 	return nullptr;
 }
 
-void LinTabList::Insert(Data data)
+void LinTabList::Insert(const Data& d)
 {
 	if (Head == nullptr)
 	{
 		Head = new Link;
-		Head->data = data;
+		Head->data.key = d.key;
+		Head->data.Poly = d.Poly;
+		Head->data.PolyString = d.PolyString;
 		Head->pNext = nullptr;
+		Amount++;
 
 		return;
 	}
 
-	if (Find(data.key) != nullptr) throw 3;									// 3 means already here
+	if (Find(d.key) != nullptr) throw 3;									// 3 means already here
 
 	Link* p = new Link;
-	p->data = data;
+	p->data.key = d.key;
+	p->data.Poly = d.Poly;
+	p->data.PolyString = d.PolyString;
 	p->pNext = Head;
 	Head = p;
+	Amount++;
 }
 
-void LinTabList::Delete(string k)
+void LinTabList::Delete(const std::string& k)
 {
 	if (Head == nullptr) throw 1;											// 1 means empty
 
@@ -94,4 +101,21 @@ void LinTabList::Delete(string k)
 	}
 
 	throw 2;																// 2 means lack of key
+}
+
+void LinTabList::Print()
+{
+	std::cout << "\tPRINTING LINEAR TABLE ON LIST" << std::endl;
+	if (Head == nullptr) std::cout << "\tVOID\n";
+	else
+	{
+		Link* p = Head;
+		std::cout << p->data.key << ":\t" << p->data.PolyString << std::endl;
+
+		while (p->pNext != nullptr)
+		{
+			p = p->pNext;
+			std::cout << p->data.key << ":\t" << p->data.PolyString << std::endl;
+		}
+	}
 }
