@@ -6,7 +6,7 @@ ordered_line_table::~ordered_line_table()
 		if (Tab[i] != nullptr)
 			delete Tab[i];
 }
-Data* ordered_line_table::Find(string key)
+Data* ordered_line_table::Find(const string& key)
 {
 	int midd, left = 0, right = size - 1;
 	while (left <= right)
@@ -22,7 +22,7 @@ Data* ordered_line_table::Find(string key)
 	return nullptr;
 	//throw 2;
 }
-void ordered_line_table::Insert(Data data)
+void ordered_line_table::Insert(const Data& data)
 {
 	if (Find(data.key) != nullptr)
 		throw 3;
@@ -58,7 +58,7 @@ void ordered_line_table::Insert(Data data)
 	size++;
 	return;
 }
-void ordered_line_table::Delete(string key)
+void ordered_line_table::Delete(const string& key)
 {
 	if (Find(key) == nullptr)
 		throw 2;
@@ -87,7 +87,7 @@ void ordered_line_table::Print()
 
 	for (int i = 0; i < size; i++)
 	{
-		cout << Tab[i]->key << "     |     " << endl;
+		cout << Tab[i]->key << "     |     " << Tab[i]->Poly <<endl;
 		k++;
 	}
 	if (k == 0)

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "ordered_line_table.h"
 #include "TreeTable.h"
+#include "postfix.h"
 
 int main()
 {

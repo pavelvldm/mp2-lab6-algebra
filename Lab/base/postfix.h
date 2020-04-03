@@ -3,7 +3,10 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 #include "stack.h"
+#include "ordered_line_table.h"
+#include "Polynom.h"
 
 using namespace std;
 
@@ -29,6 +32,7 @@ public:
   string GetInfix() { return infix; }
   string GetPostfix() { return postfix; }
   string ToPostfix();
+  double Calculate(ordered_line_table tab);
   
 };
 
