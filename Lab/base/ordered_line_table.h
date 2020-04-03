@@ -14,16 +14,16 @@ class ordered_line_table : public BaseTable
 	Data* Tab[1000];
 	int size;
 public:
-	ordered_line_table()
+	ordered_line_table() :BaseTable() 
 	{
 		for (int i = 0; i < 1000; i++)
 			Tab[i] = nullptr;
 		size = 0;
 	}
 	~ordered_line_table();
-	Data* Find(string key);
-	void Insert(Data data);
-	void Delete(string key); // 
+	Data* Find(const string& key);
+	void Insert(const Data& data);
+	void Delete(const string& key); // 
 	void Print();
 	int Compare(string k1, string k2);
 };

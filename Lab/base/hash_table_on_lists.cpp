@@ -25,10 +25,7 @@ Data* hash_table_on_lists::Find(string key)
 		while (p != nullptr)
 		{
 			if (p->data.key == key)
-			{
-	//			cout << "Good" << endl;
 				return &p->data;
-			}
 			p = p->pNext;
 		}
 	}
@@ -39,13 +36,9 @@ void hash_table_on_lists::Insert(Data data)
 	if (Find(data.key) != nullptr)
 		throw 3;
 	int hash = HashIt(data.key);
-	//cout << hash << endl;
 	link_t* p = new link_t;
 	p->pNext = nullptr;
 	p->data = data;
-	//p->data->key = data.key;
-	//p->data->PolyString = data.PolyString;
-	//p->data->Poly = data.Poly;
 	if (Tab[hash] == nullptr)
 	{
 		Tab[hash] = p;
@@ -104,7 +97,7 @@ void hash_table_on_lists::Print()
 		p = Tab[i];
 		while (p != nullptr)
 		{
-			cout << p->data.key << "     |     " << p->data.PolyString << endl ;
+			cout << p->data.key << "     |     " << p->data.Poly << endl ;
 			p = p->pNext;
 			k++;
 		}
