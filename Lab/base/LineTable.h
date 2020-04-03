@@ -1,4 +1,4 @@
-//#pragma once
+﻿//#pragma once
 
 #ifndef __LINE_TABLE_H__
 #define __LINE_TABLE_H__
@@ -18,9 +18,9 @@ public:
 		size = 0;
 		dat = new Data[capacity];
 	}
-	void Delete(string key);
-	void Insert(Data d);
-	Data* Find(string key);
+	void Delete(const string& key);
+	void Insert(const Data& d);
+	Data* Find(const string& key);
 	void Print();
 	~LineTable();
 };

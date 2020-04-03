@@ -1,4 +1,4 @@
-#ifndef __TABLE_TREE_H__
+﻿#ifndef __TABLE_TREE_H__
 #define __TABLE_TREE_H__
 
 #include "BaseTable.h"
@@ -37,9 +37,9 @@ public:
 	{
 		pRoot = nullptr;
 	}
-	void Insert(Data d);
-	Data* Find(string key);
-	void Delete(string key);
+	void Insert(const Data& d);
+	Data* Find(const string& key);
+	void Delete(const string& key);
 	void Print()
 	{
 		std::cout << "BUKA" << std::endl;
