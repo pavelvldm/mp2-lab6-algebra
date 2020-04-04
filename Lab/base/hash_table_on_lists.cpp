@@ -12,7 +12,7 @@ hash_table_on_lists::~hash_table_on_lists()
 		}
 	}
 }
-Data* hash_table_on_lists::Find(string key)
+Data* hash_table_on_lists::Find(const string& key)
 {
 	int hash = HashIt(key);
 
@@ -31,7 +31,7 @@ Data* hash_table_on_lists::Find(string key)
 	}
 	return nullptr;
 }
-void hash_table_on_lists::Insert(Data data)
+void hash_table_on_lists::Insert(const Data& data)
 {
 	if (Find(data.key) != nullptr)
 		throw 3;
@@ -54,7 +54,7 @@ void hash_table_on_lists::Insert(Data data)
 		return;
 	}
 }
-void hash_table_on_lists::Delete(string key)
+void hash_table_on_lists::Delete(const string& key)
 {
 	if (Find(key) == nullptr)
 		throw 2;

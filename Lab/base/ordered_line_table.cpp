@@ -97,7 +97,7 @@ int ordered_line_table::Compare(string k1, string k2) //-, если k1 раньше k2, +,
 {
 	string alf = "abcdefghijklmnopqrstuvwxyz";
 	string ALF = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	int i = 0;
+	unsigned int i = 0;
 	int check1 = 0, check2 = 0;
 	while (i < k1.length() && i < k2.length())
 	{
@@ -105,7 +105,7 @@ int ordered_line_table::Compare(string k1, string k2) //-, если k1 раньше k2, +,
 			i++;
 		else
 		{
-			for (int k = 0; k < alf.length(); k++)
+			for (unsigned int k = 0; k < alf.length(); k++)
 			{
 				if (k1[i] == alf[k] || k1[i] == ALF[k])
 				{

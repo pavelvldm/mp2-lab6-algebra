@@ -107,7 +107,7 @@ string TPostfix::ToPostfix()
   }
   return postfix;
 }
-double TPostfix::Calculate(ordered_line_table tab)
+double TPostfix::Calculate(BaseTable& tab)
 {
     if (postfix.length() == 0)
         ToPostfix();
@@ -185,7 +185,7 @@ double TPostfix::Calculate(ordered_line_table tab)
         }
         else
         {
-            double val1, val2, val3;
+            double val1, val2, val3 = 0;
             val2 = res.pop();
             val1 = res.pop();
             switch (postfix[i])
