@@ -1,4 +1,4 @@
-#include "LineTable.h"
+﻿#include "LineTable.h"
 
 void LineTable::repacking()
 {
@@ -12,7 +12,7 @@ void LineTable::repacking()
 	dat = temp;
 }
 
-void LineTable::Delete(string key)
+void LineTable::Delete(const string& key)
 {
 	Data* d = Find(key);
 	if (d != nullptr)
@@ -24,7 +24,7 @@ void LineTable::Delete(string key)
 	}
 }
 
-void LineTable::Insert(Data d)
+void LineTable::Insert(const Data& d)
 {
 	if (size == capacity)
 	{
@@ -40,7 +40,7 @@ void LineTable::Insert(Data d)
 		throw 3;
 }
 
-Data* LineTable::Find(string key)
+Data* LineTable::Find(const string& key)
 {
 	for (int i = 0; i < size; i++)
 	{
@@ -53,7 +53,7 @@ Data* LineTable::Find(string key)
 void LineTable::Print()
 {
 	for (int i = 0; i < size; i++)
-		cout << dat[i].key << endl;
+		cout << dat[i].key << dat[i].PolyString <<endl;
 }
 
 LineTable::~LineTable()

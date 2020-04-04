@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="BaseTable.cpp" />
     <ClCompile Include="HTL_Metd.cpp" />
+    <ClCompile Include="Interface.cpp" />
     <ClCompile Include="LineTable.cpp" />
     <ClCompile Include="List_Metd.cpp" />
     <ClCompile Include="LTL_Metd.cpp" />
@@ -35,6 +36,7 @@
     <ClInclude Include="BaseTable.h" />
     <ClInclude Include="HashTabLin.h" />
     <ClInclude Include="hash_table_on_lists.h" />
+    <ClInclude Include="Interface.h" />
     <ClInclude Include="LineTable.h" />
     <ClInclude Include="LinTabList.h" />
     <ClInclude Include="List.h" />
