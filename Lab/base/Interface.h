@@ -10,6 +10,7 @@
 #include "ordered_line_table.h"
 #include "LinTabList.h"
 #include <conio.h>
+#include "postfix.h"
 
 class Interface
 {
@@ -17,6 +18,7 @@ class Interface
 	int inputControl(string left_board, string right_board, void (*print)());
 	void exceptionHandling(int code);
 	void controlKey(const string& key);
+	void controlPolynom(const string& str);
 public:
 	Interface()
 	{

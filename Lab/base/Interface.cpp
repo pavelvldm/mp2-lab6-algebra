@@ -39,6 +39,11 @@ void Interface::controlKey(const string& key)
 	//здесь что-то будет
 }
 
+void Interface::controlPolynom(const string& str)
+{
+	//add something
+}
+
 int Interface::inputControl(string left_board, string right_board, void (*print)())
 {
 	string number;
@@ -47,7 +52,8 @@ int Interface::inputControl(string left_board, string right_board, void (*print)
 	{
 		flag = false;
 		print();
-		cin >> number;
+		//cin >> number;
+		getline(cin, number);
 		system("cls");
 		if ((number > right_board) || (number < left_board) || (number.length() != 1))
 		{
@@ -65,7 +71,7 @@ void Interface::tableSelection()
 	{
 	case 1: Base = new LineTable; break;
 	case 2: Base = new LinTabList; break;
-	case 3: Base = new LineTable; break;
+	case 3: Base = new ordered_line_table; break;
 	case 4: Base = new TableTree; break;
 	case 5: Base = new TableTree; break;
 	case 6: Base = new HashTabLin; break;
@@ -96,7 +102,7 @@ void Interface::Menu()
 void Interface::Add()
 {
 	Data d;
-	cout << "Правила ввода! Просьба их соблюдать! НАДЕЮСЬ Я ПОНЯТНО ОБЬЯСНЯЮ" << endl;
+	cout << "Правила ввода! Просьба их соблюдать! НАДЕЮСЬ, Я ПОНЯТНО ОБЬЯСНЯЮ" << endl;
 	cout << "Великий свод правил:"<< endl;
 	cout << " 1. Вводить имя(ключ) можно только используя маленькие буквы" << endl;
 	cout << " 2. Без использования цифр и всяких непристойных знаков (например, _*/!\.,)" << endl;
@@ -106,11 +112,17 @@ void Interface::Add()
 	cout << "Удачи :) " << endl;
 	try
 	{
+		string temp;
 		cout << "Введите имя полинома: ";
-		cin >> d.key;
+		//cin >> d.key;
+		getline(cin, d.key);
+		//cout << d.key << "!" << endl;
 		controlKey(d.key);
 		cout << "Введите сам полинома: ";
-		getline(cin,d.PolyString);
+		//cin >> d.PolyString;
+		getline(cin, d.PolyString);
+		controlPolynom(d.PolyString);
+		//cout << d.PolyString << "!" << endl;
 		d.Poly.CreatePolynom(d.PolyString);
 		Base->Insert(d);
 	}

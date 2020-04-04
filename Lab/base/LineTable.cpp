@@ -53,7 +53,7 @@ Data* LineTable::Find(const string& key)
 void LineTable::Print()
 {
 	for (int i = 0; i < size; i++)
-		cout << dat[i].key << dat[i].PolyString <<endl;
+		cout << dat[i].key << " " <<dat[i].PolyString <<endl;
 }
 
 LineTable::~LineTable()
