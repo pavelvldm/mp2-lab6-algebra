@@ -40,14 +40,22 @@ void printExit(const string& str)
 	cout << " 1 - Да" << endl;
 }
 
-void keyRools()
+void printCalculate(const string& str)
+{
+	cout << str << endl;
+	cout << " 1 - Посчитать полином" << endl;
+	cout << " 2 - " << endl;
+	cout << " 3 - Выход" << endl;
+}
+
+void keyRules()
 {
 	cout << " 1. Вводить имя(ключ) можно только используя маленькие буквы" << endl;
 	cout << " 2. Без использования цифр и всяких непристойных знаков (например, _*/!\.,)" << endl;
 	cout << " 3. Без цифр" << endl;
 }
 
-void polynomRools()
+void polynomRules()
 {
 	cout << " 1. Правила по вводу полиномов я не помню, так что на свой страх и риск вводите" << endl;
 }
@@ -173,7 +181,7 @@ void Interface::Menu()
 		{
 		case 1: Add(); break;
 		case 2: Search(); break;
-		case 3: break;
+		case 3: Calculate(); break;
 		case 4: Print(); break;
 		}
 	} while (code != 5);
@@ -187,9 +195,9 @@ void Interface::Add()
 	//cout << " 1. Вводить имя(ключ) можно только используя маленькие буквы" << endl;
 	//cout << " 2. Без использования цифр и всяких непристойных знаков (например, _*/!\.,)" << endl;
 	//cout << " 3. Без цифр" << endl;
-	keyRools();
+	keyRules();
 	//cout << " 4. Правила по вводу полиномов я не помню, так что на свой страх и риск вводите" << endl;
-	polynomRools();
+	polynomRules();
 	cout << "Если что-то введено будет неправильно будет выдана ошибка (я не позволю испортит труд 3 человек)" << endl;
 	cout << "Удачи :) " << endl;
 	try
@@ -235,7 +243,7 @@ void Interface::changePolynom(Data* d)
 	do
 	{
 		cout << "Свод правил:" << endl;
-		polynomRools();
+		polynomRules();
 		flag = false;
 		panika(count);
 		try 
@@ -293,6 +301,7 @@ void Interface::Integral(Data* d, int code)
 	string str;
 	str = "Исходный полином: " + d->PolyString;
 	str = str + "\nИнтеграл от этого полинома по переменной " + varity + ": " + temp.CreateString();
+	varity = str + "\n";
 	str = str + "\nЖелаете сохранить этот полином в таблице?\n";
 	//cout << "Исходный полином: " << d->Poly << endl;
 	//cout << "Интеграл от этого полинома по переменной" << varity << ": " << temp << endl;
@@ -300,7 +309,34 @@ void Interface::Integral(Data* d, int code)
 	int k = inputControl("0", "1", printExit, str);
 	if (k == 1)
 	{
-		
+		cout << varity;
+		bool flag = false;
+		Data element;
+		do
+		{
+			flag = false;
+			try 
+			{
+				keyRules();
+				cout << "Введите имя полинома: ";
+				getline(cin, element.key);
+				controlKey(element.key);
+			}
+			catch (int i)
+			{
+				exceptionHandling(i);
+				cout << "ОШИБКА!!!!!!!! Попробуйте ввести заново!";
+				flag = true;
+			}
+			if (Base->Find(element.key) != nullptr)
+				flag = true;
+		} 
+		while (flag);
+		element.Poly = temp;
+		element.PolyString = element.Poly.CreateString();
+		Base->Insert(element);
+		cout << "Для выхода нажмите любую клавишу" << endl;
+		_getch();
 	}
 	system("cls");
 }
@@ -344,5 +380,100 @@ void Interface::Search()
 			break;
 		system("cls");
 	}
+}
+
+void Interface::calPol()
+{
+	bool flag = true;
+	string str;
+	string key;
+	string infix;
+	TPostfix post;
+	while (flag)
+	{
+		flag = false;
+		cout << "Арифметическое выражение вводить в следующем формате: " << endl;
+		cout << " <имя_полинома> = <арифметическое выражение>" << endl;
+		cout << "Арифметическое выражение должно содержать только следующие операции: +,-,*" << endl;
+		cout << "Также допускаются скобки" << endl;
+		cout << "Пример: a+b*(c+d)" << endl;
+		cout << "a,b,c,d - имена полиномов, имеющихся в таблице" << endl;
+		cout << "Введите арифметическое выражение:" << endl;
+		cout << "Если ты здесь по ошибке введи !" << endl;
+		try 
+		{
+			getline(cin, str);
+			if (str == "!")
+			{
+				system("cls");
+				return;
+			}
+			if (str.find('=') == string::npos)
+				throw "Некорректный формат";
+			int count = 0;
+			int k;
+			for (k = 0; str[k] != '='; k++)
+			{
+				if (str[k] != ' ')
+				{
+					if (str[k + 1] == ' ')
+						count++;
+					key += str[k];
+				}
+			}
+			if (count > 1)
+				throw "Некорректное имя";
+			controlKey(key);
+			int length = str.length();
+			k++;
+			for (; k < length; k++)
+				infix += str[k];
+			TPostfix p(infix);
+			post = p;
+			//post = TPostfix(infix);
+		}
+		catch (int i)
+		{
+			exceptionHandling(i);
+			flag = true;
+		}
+		catch (const char* s)
+		{
+			cout << s << endl;
+			flag = true;
+		}
+	}
+	post.ToPostfix();
+	try 
+	{
+		Data res;
+		res.Poly = post.NewPoly(*Base);
+		res.key = key;
+		res.PolyString = res.Poly.CreateString();
+		Base->Insert(res);
+	}
+	catch (int i)
+	{
+		exceptionHandling(i);
+	}
+	cout << "Для выхода нажмите любую клавишу" << endl;
+	_getch();
+	system("cls");
+} 
+
+void Interface::Calculate()
+{
+	string str = "Выберите режим\n";
+	int code = 0;
+	while(code != 3)
+	{
+		code = inputControl("1", "3", printCalculate, str);
+		switch (code)
+		{
+		case 1: calPol(); break;
+		case 2: break;
+		}
+	}
+	system("cls");
 }
 

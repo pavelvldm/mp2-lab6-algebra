@@ -26,6 +26,8 @@ class Interface
 	void changePolynom(Data* d);
 	void countPolynom(Data* d);
 	void Integral(Data* d, int code);
+	void Calculate();
+	void calPol();
 public:
 	Interface()
 	{
@@ -38,7 +40,8 @@ void printTableList(const string& str);
 void printMenuList(const string& str);
 void printPolynomOperation(const string& str);
 void printExit(const string& str);
-void keyRools();
-void polynomRools();
+void printCalculate(const string& str);
+void keyRules();
+void polynomRules();
 void panika(int k);
 #endif
