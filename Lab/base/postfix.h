@@ -5,7 +5,7 @@
 #include <iostream>
 #include <vector>
 #include "stack.h"
-#include "ordered_line_table.h"
+#include "BaseTable.h"
 #include "Polynom.h"
 
 using namespace std;
@@ -34,7 +34,7 @@ public:
   string GetPostfix() { return postfix; }
   string ToPostfix();
   double Calculate(BaseTable& tab);
-  
+  Polynom NewPoly(BaseTable& tab);
 };
 
 #endif
