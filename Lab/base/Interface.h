@@ -15,21 +15,30 @@
 class Interface
 {
 	BaseTable* Base;
-	int inputControl(string left_board, string right_board, void (*print)());
+	int inputControl(string left_board, string right_board, void (*print)(const string&), const string& str);
 	void exceptionHandling(int code);
 	void controlKey(const string& key);
 	void controlPolynom(const string& str);
+	void tableSelection();
+	void Add();
+	void Print();
+	void Search();
+	void changePolynom(Data* d);
+	void countPolynom(Data* d);
+	void Integral(Data* d, int code);
 public:
 	Interface()
 	{
 		Base = nullptr;
 	}
 	void Menu();
-	void tableSelection();
-	void Add();
-	void Print();
 };
 
-void printTableList();
-void printMenuList();
+void printTableList(const string& str);
+void printMenuList(const string& str);
+void printPolynomOperation(const string& str);
+void printExit(const string& str);
+void keyRools();
+void polynomRools();
+void panika(int k);
 #endif
