@@ -26,9 +26,9 @@ public:
 
 	}
 	~hash_table_on_lists();
-	Data* Find(string key);
-	void Insert(Data data);
-	void Delete(string key); // 
+	Data* Find(const string& key);
+	void Insert(const Data& data);
+	void Delete(const string& key); // 
 	void Print();
 };
 

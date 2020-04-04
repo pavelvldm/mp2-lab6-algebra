@@ -23,7 +23,8 @@ public:
   {
     if (!isCorrect(inf))
       throw "Error";
-    for (int i = 0; i < inf.length(); i++)
+    unsigned int l = inf.length();
+    for (unsigned int i = 0; i < l; i++)
       if (inf[i] != ' ')
         infix += inf[i];
     if (infix.length() < 1)
@@ -32,7 +33,7 @@ public:
   string GetInfix() { return infix; }
   string GetPostfix() { return postfix; }
   string ToPostfix();
-  double Calculate(ordered_line_table tab);
+  double Calculate(BaseTable& tab);
   
 };
 
