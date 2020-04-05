@@ -15,11 +15,11 @@ void printMenuList(const string& str)
 {
 	cout << str << endl;
 	cout << " 1 - Добавить полином" << endl;
-	//
 	cout << " 2 - Найти по имени полином и поиздеваться над ним" << endl;
 	cout << " 3 - Ввести арифметическое выражение" << endl;
 	cout << " 4 - Вывести все полиномы" << endl;
-	cout << " 5 - Выход" << endl;
+	cout << " 5 - Удалить полином" << endl;
+	cout << " 6 - Выход" << endl;
 }
 
 void printPolynomOperation(const string& str)
@@ -44,7 +44,7 @@ void printCalculate(const string& str)
 {
 	cout << str << endl;
 	cout << " 1 - Посчитать полином" << endl;
-	cout << " 2 - " << endl;
+	cout << " 2 - Посчитать полином по выражению в точке" << endl;
 	cout << " 3 - Выход" << endl;
 }
 
@@ -113,7 +113,7 @@ void Interface::exceptionHandling(int code)
 {
 	switch (code)
 	{
-	case 1: cout << "Пусто" << endl; break;
+	case 1: cout << "В таблице пусто" << endl; break;
 	case 2: cout << "Нет такого ключа" << endl; break;
 	case 3: cout << "Уже есть объект с таким ключом" << endl; break;
 	case 4: cout << "Неверный ключ" << endl; break;
@@ -295,19 +295,21 @@ void Interface::Menu()
 	{
 		//cout << "----------------------Меню----------------------" << endl;
 		//cout << "  Для выбора, введите соответствующую клавишу." << endl;
-		code = inputControl("1", "5", printMenuList, "----------------------Меню----------------------\n  Для выбора, введите соответствующую клавишу.\n");
+		code = inputControl("1", "6", printMenuList, "---------------------------Меню---------------------------\n  Для выбора, введите соответствующую клавишу.\n");
 		switch (code)
 		{
 		case 1: Add(); break;
 		case 2: Search(); break;
 		case 3: Calculate(); break;
 		case 4: Print(); break;
+		case 5: Delete(); break;
 		}
-	} while (code != 5);
+	} while (code != 6);
 }
 
 void Interface::Add()
 {
+	cout << "-----------------------1.Добавление-----------------------" << endl;
 	Data d;
 	cout << "Правила ввода! Просьба их соблюдать! НАДЕЮСЬ, Я ПОНЯТНО ОБЬЯСНЯЮ" << endl;
 	cout << "Великий свод правил:"<< endl;
@@ -317,11 +319,11 @@ void Interface::Add()
 	keyRules();
 	//cout << " 4. Правила по вводу полиномов я не помню, так что на свой страх и риск вводите" << endl;
 	polynomRules();
-	cout << "Если что-то введено будет неправильно будет выдана ошибка (я не позволю испортит труд 3 человек)" << endl;
+	cout << "Если что-то введено будет неправильно будет выдана ошибка (я не позволю испортить труд 3 человек)" << endl;
 	cout << "Удачи :) " << endl;
 	try
 	{
-		string temp;
+		//string temp;
 		cout << "Введите имя полинома: ";
 		//cin >> d.key;
 		getline(cin, d.key);
@@ -348,6 +350,7 @@ void Interface::Add()
 
 void Interface::Print()
 {
+	cout << "-------------------------4.Вывод--------------------------" << endl;
 	Base->Print();
 	cout << "Для выхода нажмите любую клавишу" << endl;
 	_getch();
@@ -465,15 +468,18 @@ void Interface::Integral(Data* d, int code)
 void Interface::Search()
 {
 	string key;
+	string head = "--------------------2.Поиск и операции--------------------";
 	Data* d;
 	while (1 > 0) 
 	{
+		cout << head << endl;
 		cout << "Введите имя: ";
 		getline(cin, key);
 		d = Base->Find(key);
 		system("cls");
 		if (d == nullptr)
 		{
+			cout << head << endl;
 			cout << "Такого полинома нет" << endl;
 		}
 		else
@@ -481,7 +487,8 @@ void Interface::Search()
 			int cod;
 			do
 			{
-				string temp = "Имя полинома: " + d->key + "\nНайденный полином: " + d->PolyString;
+				string temp = head;
+				temp += "\nИмя полинома: " + d->key + "\nНайденный полином: " + d->PolyString;
 				cod = inputControl("0", "6", printPolynomOperation, temp);
 				switch (cod)
 				{
@@ -494,7 +501,7 @@ void Interface::Search()
 			} 
 			while (cod != 6);
 		}
-		cout << "Раздел - Найти полином" << endl;
+		//cout << "Раздел - Найти полином" << endl;
 		cout << "Попробовать еще?" << endl;
 		int code = inputControl("0", "1", printExit, "");
 		if (code == 0)
@@ -519,8 +526,8 @@ void Interface::calPol()
 		cout << "Также допускаются скобки" << endl;
 		cout << "Пример: a+b*(c+d)" << endl;
 		cout << "a,b,c,d - имена полиномов, имеющихся в таблице" << endl;
-		cout << "Введите арифметическое выражение:" << endl;
 		cout << "Если ты здесь по ошибке введи !" << endl;
+		cout << "Введите арифметическое выражение:" << endl;
 		try 
 		{
 			getline(cin, str);
@@ -531,24 +538,18 @@ void Interface::calPol()
 			}
 			if (str.find('=') == string::npos)
 				throw "Некорректный формат";
-			//int count = 0;
 			int k;
 			for (k = 0; str[k] != '='; k++)
 			{
-				//if (str[k] != ' ')
-				//{
-					//if (str[k + 1] == ' ')
-						//count++;
 				key += str[k];
-				//}
 			}
-			//if (count > 1)
-				//throw "Некорректное имя";
 			key = controlKey(key + " ");
 			int length = str.length();
 			k++;
 			for (; k < length; k++)
 				infix += str[k];
+			if (infix.find('/') != string::npos)
+				throw "Error";
 			TPostfix p(infix);
 			post = p;
 			//post = TPostfix(infix);
@@ -584,9 +585,61 @@ void Interface::calPol()
 	system("cls");
 } 
 
+void Interface::calPolPoint()
+{
+	bool flag = true;
+	string infix;
+	TPostfix post;
+	while (flag)
+	{
+		flag = false;
+		cout << "Арифметическое выражение должно содержать только следующие операции: +,-,*" << endl;
+		cout << "Также допускаются скобки" << endl;
+		cout << "Пример: a+b*(c+d)" << endl;
+		cout << "a,b,c,d - имена полиномов, имеющихся в таблице" << endl;
+		cout << "Введите арифметическое выражение:" << endl;
+		cout << "Если ты здесь по ошибке введи !" << endl;
+		try 
+		{
+			getline(cin, infix);
+			if (infix == "!")
+			{
+				system("cls");
+				return;
+			}
+			TPostfix p(infix);
+			post = p;
+		}
+		catch (int i)
+		{
+			exceptionHandling(i);
+			cout << "Попробуйте ввести еще раз" << endl;
+			flag = true;
+		}
+		catch (const char* s)
+		{
+			cout << s << endl;
+			cout << "Попробуйте ввести еще раз" << endl;
+			flag = true;
+		}
+	}
+	post.ToPostfix();
+	try
+	{
+		cout << "Результат: " << post.Calculate(*Base) << endl;
+	}
+	catch (int i)
+	{
+		exceptionHandling(i);
+	}
+	cout << "Для выхода нажмите любую клавишу" << endl;
+	_getch();
+	system("cls");
+}
+
 void Interface::Calculate()
 {
-	string str = "Выберите режим\n";
+	string str = "-----------------------3.Вычисление-----------------------\nВыберите режим\n";
 	int code = 0;
 	while(code != 3)
 	{
@@ -594,8 +647,30 @@ void Interface::Calculate()
 		switch (code)
 		{
 		case 1: calPol(); break;
-		case 2: break;
+		case 2: calPolPoint(); break;
 		}
 	}
+	system("cls");
+}
+
+void Interface::Delete()
+{
+	string key;
+	cout << "------------------------5.Удаление------------------------" << endl;
+	keyRules();
+	try
+	{
+		cout << "Введите имя полинома: ";
+		getline(cin, key);
+		key = controlKey(key + " ");
+		Base->Delete(key);
+		cout << "Удаление прошло успешно" << endl;
+	}
+	catch (int code)
+	{
+		exceptionHandling(code);
+	}
+	cout << "Для выхода нажмите любую клавишу" << endl;
+	_getch();
 	system("cls");
 }

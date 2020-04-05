@@ -28,6 +28,8 @@ class Interface
 	void Integral(Data* d, int code);
 	void Calculate();
 	void calPol();
+	void calPolPoint();
+	void Delete();
 	bool isCorrect(string str);
 public:
 	Interface()
