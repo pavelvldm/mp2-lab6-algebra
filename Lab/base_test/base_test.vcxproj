@@ -127,12 +127,16 @@
   <ItemGroup>
     <ClCompile Include="..\base\BaseTable.cpp" />
     <ClCompile Include="..\base\HTL_Metd.cpp" />
+    <ClCompile Include="..\base\LineTable.cpp" />
     <ClCompile Include="..\base\LTL_Metd.cpp" />
     <ClCompile Include="..\base\Polynom_Metd.cpp" />
+    <ClCompile Include="..\base\TreeTable.cpp" />
     <ClCompile Include="test_hashtablin.cpp" />
+    <ClCompile Include="test_linetable.cpp" />
     <ClCompile Include="test_lintablist.cpp" />
     <ClCompile Include="test_main.cpp" />
     <ClCompile Include="test_polynom.cpp" />
+    <ClCompile Include="test_treetable.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

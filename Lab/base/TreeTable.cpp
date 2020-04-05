@@ -152,6 +152,8 @@ void TableTree::Insert(const Data& _d)
 
 void TableTree::Delete(const string& key)
 {
+	if (pRoot == nullptr)
+		throw 1;
 	TreeLink* p = pRoot;
 	TreeLink* pp;
 	int flag = 0;
@@ -238,6 +240,8 @@ void TableTree::Delete(const string& key)
 		}
 
 	}
+	else
+		throw 2;
 }
 
 Data* TableTree::Find(const string& key)

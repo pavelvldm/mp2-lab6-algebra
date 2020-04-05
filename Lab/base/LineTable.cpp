@@ -14,6 +14,8 @@ void LineTable::repacking()
 
 void LineTable::Delete(const string& key)
 {
+	if (size == 0)
+		throw 1;
 	Data* d = Find(key);
 	if (d != nullptr)
 	{
@@ -22,6 +24,8 @@ void LineTable::Delete(const string& key)
 		*d = temp;
 		size--;
 	}
+	else 
+		throw 2;
 }
 
 void LineTable::Insert(const Data& d)

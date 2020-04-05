@@ -599,4 +599,3 @@ void Interface::Calculate()
 	}
 	system("cls");
 }
-
