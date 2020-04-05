@@ -132,25 +132,18 @@
     <ClCompile Include="..\base\LTL_Metd.cpp" />
     <ClCompile Include="..\base\ordered_line_table.cpp" />
     <ClCompile Include="..\base\Polynom_Metd.cpp" />
-<<<<<<< HEAD
+    <ClCompile Include="..\base\postfix.cpp" />
     <ClCompile Include="..\base\TreeTable.cpp" />
     <ClCompile Include="test_hashtablin.cpp" />
-    <ClCompile Include="test_linetable.cpp" />
-=======
-    <ClCompile Include="..\base\postfix.cpp" />
-    <ClCompile Include="test_hashtablin.cpp" />
     <ClCompile Include="test_hashtablist.cpp" />
->>>>>>> Liza
+    <ClCompile Include="test_linetable.cpp" />
     <ClCompile Include="test_lintablist.cpp" />
     <ClCompile Include="test_main.cpp" />
     <ClCompile Include="test_ordlinetab.cpp" />
     <ClCompile Include="test_polynom.cpp" />
-<<<<<<< HEAD
-    <ClCompile Include="test_treetable.cpp" />
-=======
     <ClCompile Include="test_postfix.cpp" />
     <ClCompile Include="test_stack.cpp" />
->>>>>>> Liza
+    <ClCompile Include="test_treetable.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
