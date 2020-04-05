@@ -138,9 +138,9 @@ string Interface::controlKey(const string& key)
 			if (key[k + 1] == ' ')
 				count++;
 			res += key[k];
+			if ((key[k] < 'a') || (key[k] > 'z'))
+				throw 10;
 		}
-		if ((key[k] < 'a') || (key[k] > 'z'))
-			throw 10;
 	}
 	if (count != 1)
 		throw 9;
