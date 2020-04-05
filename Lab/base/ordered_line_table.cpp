@@ -58,7 +58,7 @@ void ordered_line_table::Insert(const Data& data)
 	size++;
 	return;
 }
-void ordered_line_table::Delete(const string& key)
+void ordered_line_table::Delete(const string& key) //
 {
 	if (Find(key) == nullptr)
 		throw 2;

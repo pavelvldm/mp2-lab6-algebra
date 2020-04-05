@@ -39,6 +39,7 @@
     <ClCompile Include="..\base\BaseTable.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="test_treetable.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -49,6 +50,27 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="..\base\LineTable.cpp">
+=======
+    <ClCompile Include="test_stack.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="test_postfix.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\base\postfix.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="test_hashtablist.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="test_ordlinetab.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\base\ordered_line_table.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\base\hash_table_on_lists.cpp">
+>>>>>>> Liza
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
