@@ -75,7 +75,7 @@ void panika(int k)
 	}
 	if (k == 30)
 	{
-		cout << "А вы часом не тупенький?" << endl;
+		cout << "А вы, часом, не тупенький?" << endl;
 		cout << "Ну, что вы, это не оскорбление, а констатация факта" << endl;
 		cout << "Разработчики почти приносят извинения за дерзость компьютера" << endl;
 	}
@@ -83,7 +83,7 @@ void panika(int k)
 	{
 		cout << "Остановите его кто-нибудь!" << endl;
 		cout << "Введи хотя бы х!" << endl;
-		cout << "Без восклицательного знака. Это так предосторожность" << endl;
+		cout << "Без восклицательного знака. Это так, предосторожность" << endl;
 	}
 	if (k == 41)
 	{
@@ -120,17 +120,136 @@ void Interface::exceptionHandling(int code)
 	case 5: cout << "Нет места" << endl; break;
 	case 6: cout << "Неверная степень" << endl; break;
 	case 7: cout << "Несовпадение степеней мономов" << endl; break;
+	case 8: cout << "Полином введен некорректно" << endl; break;
+	case 9: cout << "Имя - должно быть одним словом" << endl; break;
+	case 10: cout << "Имя - только из латинских строчных букв" << endl; break;
 	}
 }
 
-void Interface::controlKey(const string& key)
+string Interface::controlKey(const string& key)
 {
+	string res;
+	int count = 0;
+	int length = key.length();
+	for (int k = 0; k < length; k++)
+	{
+		if (key[k] != ' ')
+		{
+			if (key[k + 1] == ' ')
+				count++;
+			res += key[k];
+		}
+		if ((key[k] < 'a') || (key[k] > 'z'))
+			throw 10;
+	}
+	if (count != 1)
+		throw 9;
+	return res;
 	//здесь что-то будет
 }
 
-void Interface::controlPolynom(const string& str)
+string Interface::controlPolynom(const string& str)
 {
-	//add something
+	string res;
+	int length = str.length();
+	for (int i = 0; i < length; i++)
+	{
+		if (str[i] != ' ')
+			res += str[i];
+	}
+	if (!isCorrect(res))
+		throw 8;
+	return res;
+}
+
+bool Interface::isCorrect(string str)
+{
+	int length = str.length();
+	if (length == 0)
+		return false;
+	int k[3] = { 0,0,0 };
+	int flag = 0;
+	int point = 0;
+	int simbol = 0;
+	str = str + "+";
+	string acceptable = "xyz-+0123456789.,^";
+	if ((str[0] == '.') || (str[0] == ','))
+		return false;
+	for (int i = 0; i < length; i++)
+	{
+		if (acceptable.find(str[i]) == string::npos)
+			return false;
+		for (int j = 0; j < 3; j++)
+		{
+			if ((str[i] == acceptable[j]) && (flag == 0))
+			{
+				if (k[j] == 1)
+					return false;
+				k[j]++;
+				string temp = "xyz+-";
+				if (temp.find(str[i + 1]) != string::npos)
+					flag = 0;
+				else
+					flag = 1;
+				point = 0;
+				simbol = 0;
+				break;
+			}
+			if (flag == 1)
+			{
+				if (str[i] == '^')
+				{
+					flag = 2;
+					break;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			if (flag == 2)
+			{
+				if ((str[i] < '0') || (str[i] > '9'))
+					return false;
+				else
+				{
+					string temp = "xyz+-";
+					if (temp.find(str[i + 1]) != string::npos)
+						flag = 0;
+					else
+						return false;
+				}
+			}
+		}
+		if ((str[i] == '-') || (str[i] == '+'))
+		{
+			if (simbol > 0)
+				return false;
+			else
+			{
+				k[0] = k[1] = k[2] = 0;
+				simbol++;
+			}
+		}
+		if ((str[i] >= '0') && (str[i] <= '9'))
+			simbol = 0;
+		if ((str[i] == '.') || (str[i] == ','))
+		{
+			if (point > 0)
+				return false;
+			else
+			{
+				if ((str[i - 1] < '0') || (str[i - 1] > '9'))
+					return false;
+				else
+					point++;
+			}
+		}
+	}
+	if ((str[length - 1] == '-') || (str[length - 1] == '+'))
+		return false;
+	//str.erase(length);
+	return true;
 }
 
 int Interface::inputControl(string left_board, string right_board, void (*print)(const string&), const string& str)
@@ -207,11 +326,11 @@ void Interface::Add()
 		//cin >> d.key;
 		getline(cin, d.key);
 		//cout << d.key << "!" << endl;
-		controlKey(d.key);
+		d.key = controlKey(d.key + " ");
 		cout << "Введите сам полинома: ";
 		//cin >> d.PolyString;
 		getline(cin, d.PolyString);
-		controlPolynom(d.PolyString);
+		d.PolyString = controlPolynom(d.PolyString);
 		//cout << d.PolyString << "!" << endl;
 		Polynom p(d.PolyString);
 		//d.Poly.CreatePolynom(d.PolyString);
@@ -250,7 +369,7 @@ void Interface::changePolynom(Data* d)
 		{
 			cout << "Введите новый полином: ";
 			getline(cin, poly);
-			controlPolynom(poly);
+			poly = controlPolynom(poly);
 		}
 		catch (int code)
 		{
@@ -272,6 +391,8 @@ void Interface::changePolynom(Data* d)
 
 void Interface::countPolynom(Data* d)
 {
+	cout << "Имя полинома: " << d->key << endl;
+	cout << "Полином: " << d->PolyString << endl;
 	cout << "Просьба вводить цифры. Если что-то сломается, значит таков путь. " << endl;
 	double x, y, z;
 	cout << "x: ";
@@ -320,7 +441,7 @@ void Interface::Integral(Data* d, int code)
 				keyRules();
 				cout << "Введите имя полинома: ";
 				getline(cin, element.key);
-				controlKey(element.key);
+				element.key = controlKey(element.key + " ");
 			}
 			catch (int i)
 			{
@@ -410,20 +531,20 @@ void Interface::calPol()
 			}
 			if (str.find('=') == string::npos)
 				throw "Некорректный формат";
-			int count = 0;
+			//int count = 0;
 			int k;
 			for (k = 0; str[k] != '='; k++)
 			{
-				if (str[k] != ' ')
-				{
-					if (str[k + 1] == ' ')
-						count++;
-					key += str[k];
-				}
+				//if (str[k] != ' ')
+				//{
+					//if (str[k + 1] == ' ')
+						//count++;
+				key += str[k];
+				//}
 			}
-			if (count > 1)
-				throw "Некорректное имя";
-			controlKey(key);
+			//if (count > 1)
+				//throw "Некорректное имя";
+			key = controlKey(key + " ");
 			int length = str.length();
 			k++;
 			for (; k < length; k++)
@@ -435,11 +556,13 @@ void Interface::calPol()
 		catch (int i)
 		{
 			exceptionHandling(i);
+			cout << "Попробуйте ввести еще раз" << endl;
 			flag = true;
 		}
 		catch (const char* s)
 		{
 			cout << s << endl;
+			cout << "Попробуйте ввести еще раз" << endl;
 			flag = true;
 		}
 	}
