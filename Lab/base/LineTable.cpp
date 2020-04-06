@@ -56,8 +56,11 @@ Data* LineTable::Find(const string& key)
 
 void LineTable::Print()
 {
+	std::cout << "\tPRINTING LINE TABLE (MASSIV)" << std::endl;
 	for (int i = 0; i < size; i++)
-		cout << dat[i].key << " " <<dat[i].PolyString <<endl;
+		cout << dat[i].key << ":\t" <<dat[i].PolyString <<endl;
+	if (size == 0)
+		cout << "Empty" <<endl;
 }
 
 LineTable::~LineTable()
