@@ -196,3 +196,39 @@ TEST(Polynom, can_integrate_polynom_dz)
 	testP.IntegrateDZ();
 	EXPECT_EQ(testQ, testP);
 }
+
+TEST(Polynom, cant_integrate_polynom_dxdydz)
+{
+	string s1 = "2x^9 - 7,4 + 1,8z^9x + z^4y^9";
+	Polynom testP(s1);
+	unsigned int err = 0;
+
+	try
+	{
+		testP.IntegrateDX();
+	}
+	catch(int k)
+	{
+		if (k == 8) err++;
+	}
+
+	try
+	{
+		testP.IntegrateDY();
+	}
+	catch (int k)
+	{
+		if (k == 8) err++;
+	}
+
+	try
+	{
+		testP.IntegrateDZ();
+	}
+	catch (int k)
+	{
+		if (k == 8) err++;
+	}
+
+	EXPECT_EQ(3, err);
+}

@@ -20,5 +20,7 @@
     <ClCompile Include="..\base\LTL_Metd.cpp" />
     <ClCompile Include="..\base\ordered_line_table.cpp" />
     <ClCompile Include="..\base\TreeTable.cpp" />
+    <ClCompile Include="test_list.cpp" />
+    <ClCompile Include="..\base\List_Metd.cpp" />
   </ItemGroup>
 </Project>

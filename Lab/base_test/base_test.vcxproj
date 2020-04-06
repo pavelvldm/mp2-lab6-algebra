@@ -129,6 +129,7 @@
     <ClCompile Include="..\base\hash_table_on_lists.cpp" />
     <ClCompile Include="..\base\HTL_Metd.cpp" />
     <ClCompile Include="..\base\LineTable.cpp" />
+    <ClCompile Include="..\base\List_Metd.cpp" />
     <ClCompile Include="..\base\LTL_Metd.cpp" />
     <ClCompile Include="..\base\ordered_line_table.cpp" />
     <ClCompile Include="..\base\Polynom_Metd.cpp" />
@@ -138,6 +139,7 @@
     <ClCompile Include="test_hashtablist.cpp" />
     <ClCompile Include="test_linetable.cpp" />
     <ClCompile Include="test_lintablist.cpp" />
+    <ClCompile Include="test_list.cpp" />
     <ClCompile Include="test_main.cpp" />
     <ClCompile Include="test_ordlinetab.cpp" />
     <ClCompile Include="test_polynom.cpp" />
