@@ -120,9 +120,10 @@ void Interface::exceptionHandling(int code)
 	case 5: cout << "Нет места" << endl; break;
 	case 6: cout << "Неверная степень" << endl; break;
 	case 7: cout << "Несовпадение степеней мономов" << endl; break;
-	case 8: cout << "Полином введен некорректно" << endl; break;
-	case 9: cout << "Имя должно быть одним словом" << endl; break;
-	case 10: cout << "Имя только из латинских строчных букв" << endl; break;
+	case 8: cout << "Полином нельзя проинтегрировать" << endl; break;
+	case 9: cout << "Полином введен некорректно" << endl; break;
+	case 10: cout << "Имя должно быть одним словом" << endl; break;
+	case 11: cout << "Имя только из латинских строчных букв" << endl; break;
 	}
 }
 
@@ -139,11 +140,11 @@ string Interface::controlKey(const string& key)
 				count++;
 			res += key[k];
 			if ((key[k] < 'a') || (key[k] > 'z'))
-				throw 10;
+				throw 11;//
 		}
 	}
 	if (count != 1)
-		throw 9;
+		throw 10;//
 	return res;
 	//здесь что-то будет
 }
@@ -158,7 +159,7 @@ string Interface::controlPolynom(const string& str)
 			res += str[i];
 	}
 	if (!isCorrect(res))
-		throw 8;
+		throw 9;//
 	return res;
 }
 
@@ -281,8 +282,8 @@ void Interface::tableSelection()
 	case 2: Base = new LinTabList; break;
 	case 3: Base = new ordered_line_table; break;
 	case 4: Base = new TableTree; break;
-	case 5: Base = new hash_table_on_lists; break;
-	case 6: Base = new HashTabLin; break;
+	case 5: Base = new HashTabLin; break;
+	case 6: Base = new hash_table_on_lists; break;
 	}
 }
 
@@ -376,6 +377,7 @@ void Interface::changePolynom(Data* d)
 		}
 		catch (int code)
 		{
+			system("cls");
 			exceptionHandling(code);
 			flag = true;
 			cout << "\nОШИБКА!!!!!!!! Попробуйте ввести заново" << endl;

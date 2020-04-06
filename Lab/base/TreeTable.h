@@ -28,7 +28,7 @@ class TableTree : public BaseTable
 		if (p != nullptr)
 		{
 			TempPrint(p->pLeft);
-			std::cout << p->d.key << " " << p->d.PolyString << std::endl;
+			std::cout << p->d.key << ":\t" << p->d.PolyString << std::endl;
 			TempPrint(p->pRight);
 		}
 	}
@@ -42,9 +42,11 @@ public:
 	void Delete(const string& key);
 	void Print()
 	{
-		std::cout << "BUKA" << std::endl;
+		std::cout << "\tPRINTING AVL TREE" << std::endl;
 		TreeLink* p = pRoot;
 		TempPrint(p);
+		if (pRoot == nullptr)
+			cout << "Empty" << endl;
 	}
 	void TempDelete(TreeLink* p)
 	{
