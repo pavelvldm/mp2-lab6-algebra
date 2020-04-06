@@ -17,8 +17,8 @@ class Interface
 	BaseTable* Base;
 	int inputControl(string left_board, string right_board, void (*print)(const string&), const string& str);
 	void exceptionHandling(int code);
-	void controlKey(const string& key);
-	void controlPolynom(const string& str);
+	string controlKey(const string& key);
+	string controlPolynom(const string& str);
 	void tableSelection();
 	void Add();
 	void Print();
@@ -28,6 +28,9 @@ class Interface
 	void Integral(Data* d, int code);
 	void Calculate();
 	void calPol();
+	void calPolPoint();
+	void Delete();
+	bool isCorrect(string str);
 public:
 	Interface()
 	{

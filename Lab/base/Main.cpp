@@ -9,6 +9,7 @@ int main()
 	b.Menu();
 	int a;
 	std::cout << "Goodbye world";
-	std::cin >> a;
+	_getch();
+	//std::cin >> a;
 	
 }
