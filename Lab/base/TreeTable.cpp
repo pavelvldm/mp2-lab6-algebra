@@ -1,7 +1,7 @@
-#include "TreeTable.h"
+ï»¿#include "TreeTable.h"
 
-//Åñëè p = 1 - ëåâûé ìàëûé ïîâîðîò
-//Åñëè p = -1 - ïðàâûé ìàëûé ïîâîðîò
+//Ð•ÑÐ»Ð¸ p = 1 - Ð»ÐµÐ²Ñ‹Ð¹ Ð¼Ð°Ð»Ñ‹Ð¹ Ð¿Ð¾Ð²Ð¾Ñ€Ð¾Ñ‚
+//Ð•ÑÐ»Ð¸ p = -1 - Ð¿Ñ€Ð°Ð²Ñ‹Ð¹ Ð¼Ð°Ð»Ñ‹Ð¹ Ð¿Ð¾Ð²Ð¾Ñ€Ð¾Ñ‚
 void TableTree::balance(int& a, int& b, int p)
 {
 	if (b * p >= 0)
@@ -68,8 +68,8 @@ void TableTree::rotateBigRight(TreeLink* a)
 	rotateRight(a);
 }
 
-// à = 0 - äëÿ èçìåíåíèÿ áàëàíñîâ ïðè âñòàâêå
-// à = 1 - äëÿ èçìåíåíèÿ áàëàíñîâ ïðè óäàëåíèè
+// Ð° = 0 - Ð´Ð»Ñ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ñ Ð±Ð°Ð»Ð°Ð½ÑÐ¾Ð² Ð¿Ñ€Ð¸ Ð²ÑÑ‚Ð°Ð²ÐºÐµ
+// Ð° = 1 - Ð´Ð»Ñ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ñ Ð±Ð°Ð»Ð°Ð½ÑÐ¾Ð² Ð¿Ñ€Ð¸ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ð¸
 void TableTree::changeBalance(TreeLink* p, int a)
 {
 	while (p->pParent != nullptr)
@@ -110,7 +110,7 @@ void TableTree::changeBalance(TreeLink* p, int a)
 	}
 }
 
-void TableTree::Insert(Data _d)
+void TableTree::Insert(const Data& _d)
 {
 	TreeLink* p = pRoot;
 	TreeLink* pp = nullptr;
@@ -118,7 +118,7 @@ void TableTree::Insert(Data _d)
 	while (p != nullptr)
 	{
 		if (p->d.key == _d.key)
-			throw "Error";
+			throw 3;
 		pp = p;
 		if (p->d.key < _d.key)
 		{
@@ -132,6 +132,8 @@ void TableTree::Insert(Data _d)
 		}
 	}
 	p = new TreeLink;
+	if (p == nullptr)
+		throw 5;
 	p->pRight = nullptr;
 	p->pLeft = nullptr;
 	if (flag == -1)
@@ -148,8 +150,10 @@ void TableTree::Insert(Data _d)
 	changeBalance(p, 0);
 }
 
-void TableTree::Delete(string key)
+void TableTree::Delete(const string& key)
 {
+	if (pRoot == nullptr)
+		throw 1;
 	TreeLink* p = pRoot;
 	TreeLink* pp;
 	int flag = 0;
@@ -236,9 +240,11 @@ void TableTree::Delete(string key)
 		}
 
 	}
+	else
+		throw 2;
 }
 
-Data* TableTree::Find(string key)
+Data* TableTree::Find(const string& key)
 {
 	TreeLink* p = pRoot;
 	while (p != nullptr)

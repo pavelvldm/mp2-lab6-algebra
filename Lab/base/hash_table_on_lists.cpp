@@ -12,7 +12,7 @@ hash_table_on_lists::~hash_table_on_lists()
 		}
 	}
 }
-Data* hash_table_on_lists::Find(string key)
+Data* hash_table_on_lists::Find(const string& key)
 {
 	int hash = HashIt(key);
 
@@ -25,27 +25,20 @@ Data* hash_table_on_lists::Find(string key)
 		while (p != nullptr)
 		{
 			if (p->data.key == key)
-			{
-	//			cout << "Good" << endl;
 				return &p->data;
-			}
 			p = p->pNext;
 		}
 	}
 	return nullptr;
 }
-void hash_table_on_lists::Insert(Data data)
+void hash_table_on_lists::Insert(const Data& data)
 {
 	if (Find(data.key) != nullptr)
 		throw 3;
 	int hash = HashIt(data.key);
-	//cout << hash << endl;
 	link_t* p = new link_t;
 	p->pNext = nullptr;
 	p->data = data;
-	//p->data->key = data.key;
-	//p->data->PolyString = data.PolyString;
-	//p->data->Poly = data.Poly;
 	if (Tab[hash] == nullptr)
 	{
 		Tab[hash] = p;
@@ -61,7 +54,7 @@ void hash_table_on_lists::Insert(Data data)
 		return;
 	}
 }
-void hash_table_on_lists::Delete(string key)
+void hash_table_on_lists::Delete(const string& key)
 {
 	if (Find(key) == nullptr)
 		throw 2;
@@ -104,7 +97,7 @@ void hash_table_on_lists::Print()
 		p = Tab[i];
 		while (p != nullptr)
 		{
-			cout << p->data.key << "     |     " << p->data.PolyString << endl ;
+			cout << p->data.key << "     |     " << p->data.Poly << endl ;
 			p = p->pNext;
 			k++;
 		}

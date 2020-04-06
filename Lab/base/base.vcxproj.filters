@@ -11,6 +11,8 @@
     <ClCompile Include="Polynom_Metd.cpp" />
     <ClCompile Include="BaseTable.cpp" />
     <ClCompile Include="TreeTable.cpp" />
+    <ClCompile Include="LineTable.cpp" />
+    <ClCompile Include="Interface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hash_table_on_lists.h" />
@@ -23,5 +25,7 @@
     <ClInclude Include="List.h" />
     <ClInclude Include="Polynom.h" />
     <ClInclude Include="TreeTable.h" />
+    <ClInclude Include="LineTable.h" />
+    <ClInclude Include="Interface.h" />
   </ItemGroup>
 </Project>

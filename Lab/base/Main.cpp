@@ -1,11 +1,15 @@
 #include <iostream>
-#include "ordered_line_table.h"
-#include "TreeTable.h"
+#include <clocale>
+#include "Interface.h"
 
 int main()
 {
+	setlocale(LC_ALL, "Rus");
+	Interface b;
+	b.Menu();
 	int a;
-	std::cout << "Hello world";
-	std::cin >> a;
+	std::cout << "Goodbye world";
+	_getch();
+	//std::cin >> a;
 	
 }

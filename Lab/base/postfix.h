@@ -3,7 +3,10 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 #include "stack.h"
+#include "BaseTable.h"
+#include "Polynom.h"
 
 using namespace std;
 
@@ -20,7 +23,8 @@ public:
   {
     if (!isCorrect(inf))
       throw "Error";
-    for (int i = 0; i < inf.length(); i++)
+    unsigned int l = inf.length();
+    for (unsigned int i = 0; i < l; i++)
       if (inf[i] != ' ')
         infix += inf[i];
     if (infix.length() < 1)
@@ -29,7 +33,8 @@ public:
   string GetInfix() { return infix; }
   string GetPostfix() { return postfix; }
   string ToPostfix();
-  
+  double Calculate(BaseTable& tab);
+  Polynom NewPoly(BaseTable& tab);
 };
 
 #endif
