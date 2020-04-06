@@ -84,10 +84,10 @@ void ordered_line_table::Print()
 {
 	int k = 0;
 	string h;
-
+	std::cout << "\t PRINT ORDERED LINEAR TABLE" << std::endl;
 	for (int i = 0; i < size; i++)
 	{
-		cout << Tab[i]->key << "     |     " << Tab[i]->Poly <<endl;
+		cout << Tab[i]->key << ":\t" << Tab[i]->Poly;
 		k++;
 	}
 	if (k == 0)
@@ -96,7 +96,7 @@ void ordered_line_table::Print()
 int ordered_line_table::Compare(string k1, string k2) //-, если k1 раньше k2, +, если k2 раньше k1, 0 если равны
 {
 	string alf = "abcdefghijklmnopqrstuvwxyz";
-	string ALF = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	//string ALF = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	unsigned int i = 0;
 	int check1 = 0, check2 = 0;
 	while (i < k1.length() && i < k2.length())
@@ -107,17 +107,12 @@ int ordered_line_table::Compare(string k1, string k2) //-, если k1 раньше k2, +,
 		{
 			for (unsigned int k = 0; k < alf.length(); k++)
 			{
-				if (k1[i] == alf[k] || k1[i] == ALF[k])
+				if (k1[i] == alf[k] )//|| k1[i] == ALF[k])
 				{
 					check1 = k + 1;
-					if (k2[i] == alf[k] || k2[i] == ALF[k])
-					{
-						i++;
-						check1 = 0;
-					}
 					break;
 				}
-				if (k2[i] == alf[k] || k2[i] == ALF[k])
+				if (k2[i] == alf[k] )//|| k2[i] == ALF[k])
 				{
 					check2 = k + 1;
 					break;

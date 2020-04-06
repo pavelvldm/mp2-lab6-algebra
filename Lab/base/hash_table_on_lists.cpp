@@ -92,12 +92,13 @@ void hash_table_on_lists::Print()
 {
 	int k = 0;
 	link_t* p;
+	std::cout << "\tPRINTING HASH TABLE" << std::endl;
 	for (int i = 0; i < 1000; i++)
 	{
 		p = Tab[i];
 		while (p != nullptr)
 		{
-			cout << p->data.key << "     |     " << p->data.Poly << endl ;
+			cout << p->data.key << ":\t" << p->data.Poly;
 			p = p->pNext;
 			k++;
 		}
